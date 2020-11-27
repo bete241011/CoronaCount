@@ -1,0 +1,21 @@
+<!--
+  Generated template for the StatisticsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{regionAffected}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="regionAffectedCases">
+    <ion-item>Confirmed: {{regionAffectedCases.cases}}</ion-item>
+    <ion-item>Deaths: {{regionAffectedCases.deaths}}</ion-item>
+    <ion-item>Recovered: {{regionAffectedCases.recovered}}</ion-item>
+    <ion-item>Active: {{regionAffectedCases.active}}</ion-item>
+    <ion-item>Critical: {{regionAffectedCases.critical}}</ion-item>
+  </ion-list>
+</ion-content>
