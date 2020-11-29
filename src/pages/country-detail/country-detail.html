@@ -1,0 +1,34 @@
+<ion-header no-border>
+  <ion-navbar>
+    <ion-title>{{country.country}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="refreshData($event, country.country)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card>
+    <img [src]="country.countryInfo.flag" [alt]="country.country">
+    <ion-card-header>
+      <button ion-button icon-left outline (click) = 'toggleFavorites()' *ngIf='!isFavorite'>
+        <ion-icon name="star"></ion-icon>
+        Add Favorites
+      </button>
+      <button ion-button icon-only (click) = 'toggleFavorites()' *ngIf='isFavorite'>
+        <ion-icon name="star"></ion-icon>
+      </button>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-list-header>{{country.country}}</ion-list-header>
+        <ion-item>Confirmed: {{country.cases}}</ion-item>
+        <ion-item>Today Cases: {{country.todayCases}}</ion-item>
+        <ion-item>Deaths: {{country.deaths}}</ion-item>
+        <ion-item>Today Deaths: {{country.todayDeaths}}</ion-item>
+        <ion-item>Recovered: {{country.recovered}}</ion-item>
+        <ion-item>Today Recovered: {{country.todayRecovered}}</ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Favorites</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list >
+    <!-- <ion-list *ngIf="favorites"> -->
+      <ion-item *ngFor="let favorite of favorites" (click)="onClick($event, favorite)">
+        <ion-avatar item-start>
+          <img [src]="favorite.countryInfo.flag" [alt]="favorite.country">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{favorite.country}}</h2>
+          <p>Confirmed: {{favorite.cases}}</p>
+        </ion-label>
+        <ion-note item-end>3:43 pm</ion-note>
+      </ion-item>
+    </ion-list>
+</ion-content>

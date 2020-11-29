@@ -1,12 +1,14 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{regionAffected === 'all' ? 'Worldwide' : regionAffected}}</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 <ion-tabs>
     <ion-tab [root]="statisticsRoot" [rootParams]="regionAffected" tabTitle="Statistics" tabIcon="stats"></ion-tab>
     <ion-tab [root]="countryListRoot" [rootParams]="regionAffected" tabTitle="Country list" tabIcon="list-box"></ion-tab>
+    <ion-tab [root]="favoritesRoot" tabTitle="Favorites" tabIcon="star"></ion-tab>
+    <ion-tab [root]="mapRoot" [rootParams]="regionAffected" tabTitle="Map" tabIcon="map"></ion-tab>
 </ion-tabs>

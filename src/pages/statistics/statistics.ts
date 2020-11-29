@@ -1,16 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { LoadingController, NavController, NavParams } from 'ionic-angular';
 import { Observable } from "rxjs";
 import { CoronaCountError } from '../../models/coronaCountError';
 import { RegionAffectedCases } from '../../models/regionAffectedCases';
 import { DataProvider } from '../../providers/data/data';
-
-/**
- * Generated class for the StatisticsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-statistics',
@@ -23,21 +16,34 @@ export class StatisticsPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private dataSevice: DataProvider
+              private loadingCtrl: LoadingController,
+              private dataService: DataProvider
               ) {
     this.regionAffected = this.navParams.data
-    // Region Affected Cases initialization goes here
   }
 
   ionViewDidLoad() {
-    this.dataSevice.fetchRegionAffectedActualData()
-      .subscribe(
-        (data: RegionAffectedCases) => this.regionAffectedCases = data,
-        (err: CoronaCountError) => console.log(err.friendlyMessage),
-        () => console.log(`${this.regionAffected} Cases`, this.regionAffectedCases)
-      )
-    // console.log('ionViewDidLoad StatisticsPage:', this.regionAffectedCases);
+    let loader = this.loadingCtrl.create({
+      content: 'Loading countries...',
+      // spinner: 'dots'
+    });
+    // Region Affected Cases initialization goes here
+    loader.present().then(()=>{
+      this.dataService.fetchRegionAffectedActualData()
+        .subscribe(
+          (data: RegionAffectedCases) => this.regionAffectedCases = data,
+          (err: CoronaCountError) => console.log(err.friendlyMessage),
+          () => loader.dismiss()
+        )
+      })
+  }
 
+  refreshRegionAffectedData(refresher){
+    this.dataService.refreshCurrentRegionAffectedData().subscribe(()=>{
+      refresher.complete();
+      // Invoke ionViewDidLoad
+      this.ionViewDidLoad();
+    })
   }
 
 }

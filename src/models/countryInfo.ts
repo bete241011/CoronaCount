@@ -1,4 +1,4 @@
 export interface CountryInfo {
-  iso: string,
+  iso3: string,
   flag: string
 }
