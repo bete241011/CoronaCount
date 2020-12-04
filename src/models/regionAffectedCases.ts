@@ -1,3 +1,5 @@
+import { CountryOrContinentInfo } from "./countryOrContinentInfo";
+
 export interface RegionAffectedCases{
   updated: number,
   cases: number,
@@ -8,5 +10,8 @@ export interface RegionAffectedCases{
   todayRecovered: number,
   active: number,
   critical: number,
-  affectedCountries?: number
+  affectedCountries?: number,
+  continentInfo?: CountryOrContinentInfo,
+  continent?: string,
+  countries?: any[]
 }

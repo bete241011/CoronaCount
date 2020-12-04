@@ -1,74 +1,235 @@
-<ion-header>
-  <ion-navbar>
+<ion-header class="header" no-border>
+  <ion-navbar class="navbar">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{regionAffected === 'all' ? 'Worldwide' : regionAffected}}</ion-title>
+    <ion-buttons end class="dial">
+      <button color="primary" ion-button icon-only (click)="calling($event)">
+        <ion-icon name="call"></ion-icon>
+      </button>
+     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="page-content">
   <ion-refresher (ionRefresh)="refreshRegionAffectedData($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
+  <div class="case-container-slides" margin-bottom *ngIf="regionAffectedCases">
+    <div class="desc">
+      <p>
+        {{regionAffected.includes('all') ? regionAffectedCases.affectedCountries : regionAffectedCases.countries.length}} Countries affected
+      </p>
+      <ion-note>
+        Updated {{regionAffectedCases.updated | dateConvertor}}
+      </ion-note>
+    </div>
+    <ion-slides slidesPerView="1.5">
+      <ion-slide>
         <ion-card>
           <ion-card-header>
-            Card Header
+            <div class="divSubtitle">
+              <ion-avatar class="confirmed">
+                <img src="../../assets/icon/confirmedrunning.svg" alt="svg">
+              </ion-avatar>
+              Confirmed cases
+            </div>
           </ion-card-header>
           <ion-card-content>
-            Content Here
+            <h1 class="confirmed">{{regionAffectedCases.cases | number}}</h1>
+            <ion-chip><ion-label>{{regionAffectedCases.todayCases | number | prefix}}</ion-label></ion-chip>
           </ion-card-content>
         </ion-card>
-      </ion-col>
-      <ion-col>
+      </ion-slide>
+      <ion-slide>
         <ion-card>
           <ion-card-header>
-            Card Header
+            <div class="divSubtitle">
+              <ion-avatar class="deaths">
+                <img src="../../assets/icon/deathrunning.svg" alt="svg">
+              </ion-avatar>
+              Total Deaths
+            </div>
           </ion-card-header>
           <ion-card-content>
-            Content Here
+            <h1>{{regionAffectedCases.deaths | number}}</h1>
+            <ion-chip><ion-label>{{regionAffectedCases.todayDeaths | number | prefix}}</ion-label></ion-chip>
           </ion-card-content>
         </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
+      </ion-slide>
+      <ion-slide>
         <ion-card>
           <ion-card-header>
-            Card Header
+            <div class="divSubtitle">
+              <ion-avatar class="recovered">
+                <img src="../../assets/icon/recoveredrunning.svg" alt="svg">
+              </ion-avatar>
+              Total Recovered
+            </div>
           </ion-card-header>
           <ion-card-content>
-            Content Here
+            <h1>{{regionAffectedCases.recovered | number}}</h1>
+            <ion-chip><ion-label>{{regionAffectedCases.todayRecovered | number | prefix}}</ion-label></ion-chip>
           </ion-card-content>
         </ion-card>
-      </ion-col>
-      <ion-col>
+      </ion-slide>
+      <ion-slide>
         <ion-card>
           <ion-card-header>
-            Card Header
+            <div class="divSubtitle">
+              <ion-avatar class="active">
+                <img src="../../assets/icon/activerunning.svg" alt="svg">
+              </ion-avatar>
+              Active cases
+            </div>
           </ion-card-header>
           <ion-card-content>
-            Content Here
+            <h1>{{regionAffectedCases.active | number}}</h1>
+            <ion-chip><ion-label>--</ion-label></ion-chip>
           </ion-card-content>
         </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
+      </ion-slide>
+      <ion-slide>
         <ion-card>
           <ion-card-header>
-            Preventation here
+            <div class="divSubtitle">
+              <ion-avatar class="critical">
+                <img src="../../assets/icon/criticalrunning.svg" alt="svg">
+              </ion-avatar>
+              Critical cases
+            </div>
           </ion-card-header>
           <ion-card-content>
-            Preventation Content Here
+            <h1>{{regionAffectedCases.critical | number}}</h1>
+            <ion-chip><ion-label>--</ion-label></ion-chip>
           </ion-card-content>
         </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <!-- <div class="case-container" *ngIf="regionAffectedCases">
+    <ion-grid no-padding>
+      <div>
+        <p>
+          {{regionAffected.includes('all') ? regionAffectedCases.affectedCountries : regionAffectedCases.countries.length}} countries affected
+        </p>
+        <ion-note>
+          Updated {{regionAffectedCases.updated | dateConvertor}}
+        </ion-note>
+      </div>
+      <ion-row>
+        <ion-col col-xs-6>
+          <ion-card>
+            <ion-card-header>
+              <div>
+                <ion-avatar item-start class="confirmed">
+                  <img src="../../assets/icon/running.svg" alt="svg">
+                </ion-avatar>
+                <p>Confirmed cases</p>
+              </div>
+            </ion-card-header>
+            <ion-card-content>
+              <h1>{{regionAffectedCases.cases | number}}</h1>
+              <p>People</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col col-xs-6>
+          <ion-card>
+            <ion-card-header>
+              <div>
+                <ion-avatar item-start class="deaths">
+                  <img src="../../assets/icon/running.svg" alt="svg">
+                </ion-avatar>
+                <p>Total deaths</p>
+              </div>
+            </ion-card-header>
+            <ion-card-content>
+              <h1>{{regionAffectedCases.deaths | number}}</h1>
+              <p>People</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-xs-6>
+          <ion-card>
+            <ion-card-header>
+              <div>
+                <ion-avatar item-start class="recovered">
+                  <img src="../../assets/icon/running.svg" alt="svg">
+                </ion-avatar>
+                <p>Total Recovered</p>
+              </div>
+            </ion-card-header>
+            <ion-card-content>
+              <h1>{{regionAffectedCases.recovered | number}}</h1>
+              <p>People</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col col-xs-6>
+          <ion-card>
+            <ion-card-header>
+              <div>
+                <ion-avatar item-start class="active">
+                  <img src="../../assets/icon/running.svg" alt="svg">
+                </ion-avatar>
+                <p>Active cases</p>
+              </div>
+            </ion-card-header>
+            <ion-card-content>
+              <h1>{{regionAffectedCases.active | number}}</h1>
+              <p>People</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div> -->
+  <div class="preventation">
+    <ion-grid>
+      <h3>Preventations</h3>
+      <ion-row>
+        <ion-col >
+          <!-- <ion-avatar> -->
+            <img width="50" height="50" src="../../assets/icon/hand_wash.svg" alt="">
+          <!-- </ion-avatar> -->
+          <p>Wash Hands</p>
+        </ion-col>
+        <ion-col>
+          <!-- <ion-avatar> -->
+            <img width="50" height="50" src="../../assets/icon/use_mask.svg" alt="">
+          <!-- </ion-avatar> -->
+          <p>Use Masks</p>
+        </ion-col>
+        <ion-col>
+          <!-- <ion-avatar> -->
+            <img width="50" height="50" src="../../assets/icon/Clean_Disinfect.svg" alt="">
+          <!-- </ion-avatar> -->
+          <p>Clean Disinfect</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="nurse">
+    <ion-grid>
+      <ion-row>
+          <ion-col col-6>
+            <img src="../../assets/icon/nurse.svg" alt="">
+          </ion-col>
+          <ion-col col-5>
+            <!-- <img src="../../assets/icon/virus.svg" alt=""> -->
+            <h4>Dial 8335 for <br> Medical Help!</h4>
+            <p>if any symptoms appear</p>
+          </ion-col>
+          <ion-col col-1>
+            <img src="../../assets/icon/virus.svg" alt="">
+            <!-- <h4>Dial 8335 for <br> Medical Help!</h4>
+            <p>if any symptoms appear</p> -->
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  </ion-content>

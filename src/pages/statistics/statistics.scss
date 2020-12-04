@@ -1,3 +1,196 @@
 page-statistics {
+  ion-header{
+    ion-navbar{
+      .dial{
+        transform: rotate(-95deg);
+      }
+    }
+  }
 
+  .toolbar-background{
+    background: #f1f5f8;
+  }
+
+  .page-content{
+    ion-refresher{
+      ion-refresher-content{
+      background:#F8F8F8;
+      }
+    }
+// SCSS For Slides
+    .case-container-slides{
+      background: #f1f5f8;
+      padding: 4px 10px 20px 10px;
+      border-radius: 0 0 28px 28px;
+
+      .desc{
+        display: flex;
+        place-items: center;
+        justify-content: space-around;
+      }
+
+      ion-card{
+        box-shadow: none;
+        border-radius: 14px;
+        background: rgba($color: #ffffff, $alpha: 0.8);
+
+        .divSubtitle{
+          display: flex;
+          ion-avatar{
+          border-radius: 100%;
+          margin-right: 7px;
+          // background: rgba($color: #ff8c00, $alpha: 0.20);
+          }
+
+          .confirmed{
+            background: rgba($color: #ff8c00, $alpha: 0.20);
+          }
+          .deaths{
+            background: rgba($color: #ff2d55, $alpha: 0.20);
+          }
+          .recovered{
+            background: rgba($color: #25cca8, $alpha: 0.20);
+          }
+          .active{
+            background: rgba($color: #2080ee, $alpha: 0.25);
+          }
+          .critical{
+            background: rgba($color: #75171f, $alpha: 0.25);
+          }
+        }
+        ion-card-content{
+          h1{
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    // SCSS for grid cards
+    .case-container{
+      // background: rgb(234,236,239);
+      // border: none;
+      border-bottom-left-radius: 35px;
+      border-bottom-right-radius: 35px;
+      padding: 10px 10px 30px 10px;
+      //
+      // background: rgba($color: #0d8e53, $alpha: 0.09);
+      background:#F8F8F8;
+      ion-grid{
+        div{
+          display: flex;
+          place-items: center;
+          justify-content: space-around;
+          // padding: 0px 15px;
+        }
+        ion-row{
+          ion-col{
+            ion-card{
+              box-shadow: none;
+              border-radius: 10px;
+              // background: rgba($color: #050505, $alpha: 0.01);
+              ion-card-header{
+                padding-bottom: 2px;
+                div{
+                  display: flex;
+                  ion-avatar{
+                    // background: rgba($color: #ff9c00, $alpha: 0.25);
+                    border-radius: 100%;
+                    margin-right: 10px;
+                    padding: 1px;
+                    width: 20px;
+                    height: 20px;
+                    img{
+                      width: 20px;
+                      height: 20px;
+                    }
+                  }
+                  .confirmed{
+                    background: rgba($color: #ff8c00, $alpha: 0.20);
+                  }
+                  .deaths{
+                    background: rgba($color: #ff2d55, $alpha: 0.20);
+                  }
+                  .recovered{
+                    background: rgba($color: #50e3c2, $alpha: 0.20);
+                  }
+                  .active{
+                    background: rgba($color: #5856d6, $alpha: 0.25);
+                  }
+                }
+              }
+              ion-card-content{
+                text-align: center;
+                h1{
+                  font-weight: 600;
+                  // font-size: 30px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .preventation{
+      ion-grid{
+        text-align: center;
+        h3{
+          align-self: flex-start;
+          margin-left: 15px;
+          font-weight: 600;
+        }
+        ion-row{
+          ion-col{
+            // margin: 0 15px;
+            &:first-child{
+              margin-right: 0px;
+              margin-left: 15px;
+            }
+
+            &:nth-child(2){
+              margin: 0 15px;
+            }
+
+            &:last-child{
+              margin-right: 15px;
+              margin-left: 0px;
+            }
+            p{
+              color: #0d8e53;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+    .nurse{
+      margin: 0 15px 20px 15px;
+      border-radius: 15px;
+      height: 110px;
+      background: linear-gradient(90deg, rgba(96,190,147,0.7) 0%, rgba(27,141,89,0.8) 87%);
+      ion-row{
+        &:first-child{
+          margin-top: -20px;
+          margin-left: -15px;
+        }
+        ion-col{
+          h4{
+            color: white;
+            font-weight: 600;
+          }
+          p{
+            color: whitesmoke;
+            margin-right: -10px;
+          }
+        }
+        &:last-child{
+          img{
+            margin-bottom: -15px;
+          }
+        }
+      }
+    }
+  }
 }
+
+

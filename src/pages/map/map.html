@@ -1,15 +1,26 @@
-<!--
-  Generated template for the MapPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+<ion-header no-border translucent>
   <ion-navbar>
-    <ion-title>Map</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{regionAffected === 'all' ? 'Worldwide' : regionAffected}}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content fullscreen>
+
+  <!-- <div class="mapContainer"> -->
+    <agm-map [latitude]="map.lat" [longitude]="map.long" [zoom]="2">
+      <agm-marker [latitude]='map.lat' [longitude]="map.long">
+        <agm-info-window>
+          <h6>{{areaAffected.includes(regionAffected.toLowerCase()) ? map.continent : regionAffected.includes('all') ? 'Worldwide' : map.country}}</h6>
+          <p>Confirmed: {{map.cases | number}}</p>
+          <p>Deaths: {{map.deaths | number}}</p>
+          <p>Recovered: {{map.recovered | number}}</p>
+          <p>Active: {{map.active | number}}</p>
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+  <!-- </div> -->
 
 </ion-content>

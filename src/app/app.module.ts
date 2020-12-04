@@ -5,6 +5,8 @@ import { AgmCoreModule } from "@agm/core";
 
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from "@ionic/storage";
+import { SQLite } from "@ionic-native/sqlite";
+import { CallNumber } from '@ionic-native/call-number';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -17,7 +19,10 @@ import { CountryDetailPage } from '../pages/country-detail/country-detail';
 import { FavoritesPage } from '../pages/favorites/favorites';
 import { UserSettingsProvider } from '../providers/user-settings/user-settings';
 import { MapPage } from '../pages/map/map';
-
+import { DeviceProvider } from '../providers/device/device';
+import { DateConvertorPipe } from '../pipes/date-convertor/date-convertor';
+import { SqlStorageProvider } from '../providers/sql-storage/sql-storage';
+import { PrefixPipe } from '../pipes/prefix/prefix';
 @NgModule({
   declarations: [
     MyApp,
@@ -26,14 +31,16 @@ import { MapPage } from '../pages/map/map';
     CountryListPage,
     FavoritesPage,
     CountryDetailPage,
-    MapPage
+    MapPage,
+    DateConvertorPipe,
+    PrefixPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp),
-    // AgmCoreModule.forRoot({apiKey: 'AIzaSyALn_eWbny1GkKjrCqcfg9ZX9L2ieBR83w'})
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyALn_eWbny1GkKjrCqcfg9ZX9L2ieBR83w'})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,6 +58,10 @@ import { MapPage } from '../pages/map/map';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     UserSettingsProvider,
+    DeviceProvider,
+    SQLite,
+    CallNumber,
+    SqlStorageProvider
   ]
 })
 export class AppModule {}

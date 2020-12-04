@@ -1,34 +1,104 @@
-<ion-header no-border>
+<ion-header no-border translucent>
   <ion-navbar>
-    <ion-title>{{country.country}}</ion-title>
+    <ion-title>{{countryCase.country}}</ion-title>
+    <ion-buttons end>
+      <button color="primary" ion-button icon-only (click) = 'toggleFavorites()' *ngIf='!isFavorite'>
+        <ion-icon name="ios-star-outline"></ion-icon>
+      </button>
+      <button color="primary" ion-button icon-only (click) = 'toggleFavorites()' *ngIf='isFavorite'>
+        <ion-icon name="star"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="countryCaseByDate" (ionChange)="fetchCountryCaseByDate($event)">
+      <ion-segment-button value="yesterday">Yesterday</ion-segment-button>
+      <ion-segment-button value="today">Today</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-refresher (ionRefresh)="refreshData($event, country.country)">
+<ion-content class="detailCaseContainer">
+  <ion-refresher (ionRefresh)="refreshData($event, countryCase.country)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-card>
-    <img [src]="country.countryInfo.flag" [alt]="country.country">
-    <ion-card-header>
-      <button ion-button icon-left outline (click) = 'toggleFavorites()' *ngIf='!isFavorite'>
-        <ion-icon name="star"></ion-icon>
-        Add Favorites
-      </button>
-      <button ion-button icon-only (click) = 'toggleFavorites()' *ngIf='isFavorite'>
-        <ion-icon name="star"></ion-icon>
-      </button>
-    </ion-card-header>
+    <img [src]="countryCase.countryInfo.flag" [alt]="countryCase.country">
     <ion-card-content>
-      <ion-list>
-        <ion-list-header>{{country.country}}</ion-list-header>
-        <ion-item>Confirmed: {{country.cases}}</ion-item>
-        <ion-item>Today Cases: {{country.todayCases}}</ion-item>
-        <ion-item>Deaths: {{country.deaths}}</ion-item>
-        <ion-item>Today Deaths: {{country.todayDeaths}}</ion-item>
-        <ion-item>Recovered: {{country.recovered}}</ion-item>
-        <ion-item>Today Recovered: {{country.todayRecovered}}</ion-item>
-      </ion-list>
+      <ion-grid>
+        <div>
+          <ion-note>Update {{countryCase.updated | dateConvertor}}</ion-note>
+            <button clear color="dark" icon-only ion-button (click) = 'gotoMap($event, countryCase.country)'>
+              <ion-icon ios="ios-navigate" md="ios-navigate"></ion-icon>
+            </button>
+        </div>
+        <ion-row>
+          <ion-col col-5>
+            Confirmed cases:
+          </ion-col>
+          <ion-col col-4>
+            {{countryCase.cases | number}}
+          </ion-col>
+          <ion-col col-3>
+            {{countryCase.todayCases | number | prefix}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5>
+            Total deaths:
+          </ion-col>
+          <ion-col col-4>
+            {{countryCase.deaths | number}}
+          </ion-col>
+          <ion-col col-3>
+            {{countryCase.todayDeaths | number | prefix}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5>
+            Total recovered:
+          </ion-col>
+          <ion-col col-4>
+            {{countryCase.recovered | number}}
+          </ion-col>
+          <ion-col col-3>
+            {{countryCase.todayRecovered | number | prefix}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5>
+            Active cases:
+          </ion-col>
+          <ion-col col-4>
+            {{countryCase.active | number}}
+          </ion-col>
+          <ion-col col-3>
+            --
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5>
+            Critical cases:
+          </ion-col>
+          <ion-col col-4>
+            {{countryCase.critical | number}}
+          </ion-col>
+          <ion-col col-3>
+            --
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5>
+            Total tests:
+          </ion-col>
+          <ion-col col-4>
+            {{countryCase.tests | number}}
+          </ion-col>
+          <ion-col col-3>
+            --
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-content>

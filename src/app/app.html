@@ -1,13 +1,12 @@
-  <ion-menu [content]="content" type="overlay">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Region Affected</ion-title>
-      </ion-toolbar>
-    </ion-header>
+  <!-- <div *ngIf="showSplash" class="splash">
+    <div class="spinner"></div>
+  </div> -->
 
+  <ion-menu [content]="content" type="overlay">
     <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <div class="menu-header-bg"></div>
+      <ion-list no-lines class="menu-items">
+        <button menuClose ion-item *ngFor="let p of pages" [class.active]="checkActive(p)" (click)="openPage(p)">
           {{p.regionAffected}}
         </button>
       </ion-list>

@@ -57,13 +57,37 @@ export class DataProvider {
     return countriesAffected;
   }
 
-  refreshCountryCases(country): Observable<CountryCases | CoronaCountError>{
+  fetchCountryActualData(country): Observable<CountryCases | CoronaCountError>{
     const countryCases = this.http.get<CountryCases>(`${this.baseUrl}/countries/${country}?strict=true`)
       .pipe(
         catchError(this.handleError)
       );
 
     return countryCases;
+  }
+
+  fetchCountryYesterdayData(country): Observable<CountryCases | CoronaCountError>{
+    const countryCases = this.http.get<CountryCases>(`${this.baseUrl}/countries/${country}?yesterday=true&strict=true`)
+      .pipe(
+        catchError(this.handleError)
+      );
+
+    return countryCases;
+  }
+
+  mapWithRegionAffected(region): any{
+    // const regionAffected = region.includes('Oceania') ? "Australia%2FOceania" : region;
+    const areaAffected = ['africa', 'europe', 'north america', 'south america', 'asia', 'oceania'];
+    const url = region.includes('all')
+      ? `${this.baseUrl}/${region}`
+      : areaAffected.includes(region.toLowerCase())
+      ? `${this.baseUrl}/continents/${region.includes('Oceania') ? 'Australia%2FOceania' : region}`
+      : `${this.baseUrl}/countries/${region}`
+    return this.http.get(`${url}`);
+  }
+
+  refreshCountryCases(country): Observable<CountryCases | CoronaCountError>{
+    return this.fetchCountryActualData(country);
   }
 
 }

@@ -14,3 +14,41 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+// @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Texturina&display=swap');
+
+*{
+  // font-family: Ubuntu;
+  font-family: Roboto Condensed;
+  // font-family: Texturina;
+}
+
+.menu-header-bg{
+  height: 180px;
+  width: 350px;
+  background: #0d8e53;
+  background: linear-gradient(90deg, rgba(96,190,147,0.7) 0%, rgba(27,141,89,0.8) 100%);
+  box-shadow: 0px 1px 10px rgba(68, 243, 164, 0.5);
+  transform: rotate(-15deg);
+  border-radius: 10px 10px 10px 50px;
+  margin: -50px 0px 60px -18px;
+}
+
+.menu-items{
+  margin: 0;
+  button{
+    padding-left: 40px;
+    // font-weight: 600;
+    // margin-bottom: 5px;
+  }
+  .active{
+    border-left: 10px solid !important;
+    font-weight: 600;
+    color: #0d8e53;
+    padding-left: 30px;
+    background: rgba($color: #0d8e53, $alpha: 0.09);
+  }
+}

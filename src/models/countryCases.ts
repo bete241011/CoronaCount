@@ -1,9 +1,9 @@
-import { CountryInfo } from "./countryInfo";
+import { CountryOrContinentInfo } from "./countryOrContinentInfo";
 
 export interface CountryCases {
   updated: number,
   country: string,
-  countryInfo: CountryInfo,
+  countryInfo?: CountryOrContinentInfo,
   cases: number,
   todayCases: number,
   deaths: number,

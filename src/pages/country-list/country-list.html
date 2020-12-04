@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header no-border translucent>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -10,16 +10,16 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list [virtualScroll]="filteredCountries" [approxHeaderWidth]="'132px'">
+  <ion-list [virtualScroll]="filteredCountries" [approxHeaderWidth]="'132px'" [approxItemHeight]="'40px'">
     <ion-item *virtualItem="let country" (click)="onClick($event, country)">
       <ion-avatar item-start>
-        <img [src]="country.countryInfo.flag" [alt]="country.country">
+        <img cache="true" [src]="country.countryInfo.flag" [alt]="country.country">
       </ion-avatar>
       <ion-label>
         <h2>{{country.country}}</h2>
-        <p>Confirmed: {{country.cases}}</p>
+        <p>Confirmed: {{country.cases | number}}</p>
       </ion-label>
-      <ion-note item-end>3:43 pm</ion-note>
+      <ion-note item-end>{{country.updated |dateConvertor}}</ion-note>
     </ion-item>
   </ion-list>
   <!-- <ion-list *ngIf="countriesAffected"> -->

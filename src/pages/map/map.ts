@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the MapPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NavParams } from 'ionic-angular';
+import { DataProvider } from '../../providers/data/data';
 
 @Component({
   selector: 'page-map',
@@ -14,11 +8,46 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class MapPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  regionAffected: string;
+  areaAffected = ['africa', 'europe', 'north america', 'south america', 'asia', 'oceania'];
+  map: any = {}
+  // lat = 8;
+  // long = 38;
+  // map: any;
+  constructor(
+              public navParams: NavParams,
+              private dataService: DataProvider
+              ) {
+    this.regionAffected = this.navParams.data
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MapPage');
+    this.dataService.mapWithRegionAffected(this.regionAffected)
+      .subscribe(
+        data => {
+          const mapWithData = data
+
+          this.regionAffected.includes('all')
+            ? this.map = {
+              ...mapWithData,
+              lat: 0,
+              long: 0,
+            }
+             :this.areaAffected.includes(this.regionAffected.toLowerCase())
+            ? this.map = {
+              ...mapWithData,
+              lat: mapWithData.continentInfo.lat,
+              long: mapWithData.continentInfo.long,
+            }
+            : this.map = {
+              ...mapWithData,
+              lat: mapWithData.countryInfo.lat,
+              long: mapWithData.countryInfo.long,
+            }
+        },
+        err => console.log(err),
+        () => console.log("lat",this.map.lat, this.map.long)
+      )
   }
 
 }

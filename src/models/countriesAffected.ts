@@ -1,8 +1,9 @@
-import { CountryInfo } from "./countryInfo";
+import { CountryOrContinentInfo } from "./countryOrContinentInfo";
 
 export interface CountriesAffected {
+  updated: number,
   country: string,
-  countryInfo: CountryInfo,
+  countryInfo: CountryOrContinentInfo,
   cases: number,
   continent: string
 }

@@ -4,6 +4,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RegionAffectedPage } from '../pages/region-affected/region-affected';
 import { DataProvider } from '../providers/data/data';
+import { UserSettingsProvider } from '../providers/user-settings/user-settings';
+
+import { timer } from "rxjs/observable/timer";
 
 @Component({
   templateUrl: 'app.html'
@@ -13,16 +16,20 @@ export class MyApp {
 
   rootPage = RegionAffectedPage;
   // regionAffected: string;
+  activePage: string;
 
   pages: Array<{regionAffected: string, component: any}>;
+
+  showSplash = true;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private dataService: DataProvider) {
+              private dataService: DataProvider,
+              private userSettingService: UserSettingsProvider,
+              ) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
     this.pages = [
       { regionAffected: 'Worldwide', component: RegionAffectedPage },
       { regionAffected: 'Africa', component: RegionAffectedPage },
@@ -33,6 +40,8 @@ export class MyApp {
       { regionAffected: 'South America', component: RegionAffectedPage }
     ];
 
+    this.activePage = this.pages[0].regionAffected;
+
   }
 
   initializeApp() {
@@ -41,6 +50,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      timer(3000).subscribe(() => this.showSplash = false)
+
+      this.userSettingService.initStorage().then(() => this.rootPage = RegionAffectedPage);
+      // this.deviceService.setWidthAndHeight(this.platform.width(), this.platform.height())
+      // console.log('Width: ' + this.platform.width());
+      // console.log('Height: ' + this.platform.height());
     });
   }
 
@@ -50,5 +66,10 @@ export class MyApp {
     this.dataService.setRegionAffected(regionAffected === 'Worldwide' ? 'all' : regionAffected)
     // this.regionAffected = regionAffected === 'Worldwide' ? 'all' : regionAffected
     this.nav.setRoot(component, {regionAffected: this.dataService.regionAffected});
+    this.activePage = regionAffected;
+  }
+
+  checkActive({regionAffected}){
+    return regionAffected == this.activePage
   }
 }
