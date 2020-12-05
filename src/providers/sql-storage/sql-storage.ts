@@ -42,7 +42,6 @@ export class SqlStorageProvider {
   }
 
   // should be called after the device ready event is fired
-
   initializeDatabase(){
     return this.sqlite.create({name: 'data.db',location: 'default'}).then(db => {
       this.db = db;

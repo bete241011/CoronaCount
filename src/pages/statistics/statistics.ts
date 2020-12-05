@@ -11,10 +11,6 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class StatisticsPage {
 
-  // slideOptions = {
-
-  // }
-
   regionAffected: string;
   regionAffectedCases: RegionAffectedCases;
 
@@ -30,7 +26,6 @@ export class StatisticsPage {
   ionViewDidLoad() {
     let loader = this.loadingCtrl.create({
       content: 'Loading cases...',
-      // spinner: 'dots'
     });
     // Region Affected Cases initialization goes here
     loader.present().then(()=>{

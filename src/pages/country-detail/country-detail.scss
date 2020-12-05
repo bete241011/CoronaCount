@@ -3,14 +3,11 @@ page-country-detail {
   .detailCaseContainer{
     background-color:#F8F8F8;
     ion-card{
-      // border-radius: 12px;
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
       box-shadow: none;
-      // margin: 20px;
       img{
         height: 190px;
-        // opacity: 0.7;
       }
       ion-card-content{
         background: rgba($color: #0d8e53, $alpha: 0.12);

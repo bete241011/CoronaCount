@@ -76,7 +76,6 @@ export class DataProvider {
   }
 
   mapWithRegionAffected(region): any{
-    // const regionAffected = region.includes('Oceania') ? "Australia%2FOceania" : region;
     const areaAffected = ['africa', 'europe', 'north america', 'south america', 'asia', 'oceania'];
     const url = region.includes('all')
       ? `${this.baseUrl}/${region}`

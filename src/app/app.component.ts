@@ -6,8 +6,6 @@ import { RegionAffectedPage } from '../pages/region-affected/region-affected';
 import { DataProvider } from '../providers/data/data';
 import { UserSettingsProvider } from '../providers/user-settings/user-settings';
 
-import { timer } from "rxjs/observable/timer";
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -15,12 +13,9 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage = RegionAffectedPage;
-  // regionAffected: string;
   activePage: string;
 
   pages: Array<{regionAffected: string, component: any}>;
-
-  showSplash = true;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
@@ -50,13 +45,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-      timer(3000).subscribe(() => this.showSplash = false)
-
       this.userSettingService.initStorage().then(() => this.rootPage = RegionAffectedPage);
-      // this.deviceService.setWidthAndHeight(this.platform.width(), this.platform.height())
-      // console.log('Width: ' + this.platform.width());
-      // console.log('Height: ' + this.platform.height());
     });
   }
 
@@ -64,7 +53,6 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.dataService.setRegionAffected(regionAffected === 'Worldwide' ? 'all' : regionAffected)
-    // this.regionAffected = regionAffected === 'Worldwide' ? 'all' : regionAffected
     this.nav.setRoot(component, {regionAffected: this.dataService.regionAffected});
     this.activePage = regionAffected;
   }

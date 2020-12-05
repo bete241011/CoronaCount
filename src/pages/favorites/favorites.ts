@@ -19,9 +19,7 @@ export class FavoritesPage {
   }
 
   ionViewDidEnter() {
-    // this.favorites = this.userSettingService.getAllFavorites();
     this.userSettingService.getAllFavorites().then(favs => this.favorites = favs);
-    // console.log('Favorites', this.favorites)
   }
 
   onClick($event, country){

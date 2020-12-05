@@ -15,15 +15,9 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-// @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Texturina&display=swap');
-
 *{
-  // font-family: Ubuntu;
   font-family: Roboto Condensed;
-  // font-family: Texturina;
 }
 
 .menu-header-bg{
@@ -41,8 +35,6 @@
   margin: 0;
   button{
     padding-left: 40px;
-    // font-weight: 600;
-    // margin-bottom: 5px;
   }
   .active{
     border-left: 10px solid !important;

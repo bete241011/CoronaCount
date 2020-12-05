@@ -4,9 +4,6 @@ import moment from 'moment';
   name: 'dateConvertor',
 })
 export class DateConvertorPipe implements PipeTransform {
-  /**
-   * Takes a value and makes it lowercase.
-   */
   transform(value: string, ...args) {
     return moment(value).fromNow();
   }

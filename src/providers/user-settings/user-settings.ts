@@ -18,10 +18,6 @@ export class UserSettingsProvider {
   }
 
   favoriteCountry(country){
-    // let item = {country: country}
-    /** Local Storage */
-    // this.storage.set(country.countryInfo.iso3.toString(), JSON.stringify(country));
-
     if(this.sqlMode){
       this.sqlStorage.set(country.countryInfo.iso3.toString(), JSON.stringify(country));
     } else{
@@ -30,8 +26,6 @@ export class UserSettingsProvider {
   }
 
   unfavoriteCountry(country){
-     /** Local Storage */
-    // this.storage.remove(country.countryInfo.iso3.toString());
 
     if(this.sqlMode){
       this.sqlStorage.remove(country.countryInfo.iso3.toString());
@@ -41,8 +35,6 @@ export class UserSettingsProvider {
   }
 
   isFavoriteCountry(countryISO: string): Promise<boolean>{
-    /** Local Storage */
-    // return this.storage.get(countryISO).then(value => value ? true : false);
 
     if(this.sqlMode){
       return this.sqlStorage.get(countryISO).then(value => value ? true : false);
@@ -51,24 +43,15 @@ export class UserSettingsProvider {
     }
   }
 
-  // getAllFavorites(): CountriesAffected[]{
   getAllFavorites(): Promise<CountriesAffected[]>{
-    /** Local Storage */
-
-    // let favorites: CountriesAffected[] = [];
-    // this.storage.forEach(data => {
-    //   // console.log('*****forEach', data);
-    //   favorites.push(JSON.parse(data));
-    // });
-    // return favorites;
 
     if(this.sqlMode){
       return this.sqlStorage.getAll();
     } else{
       return new Promise(resolve => {
         let favorites: CountriesAffected[] = [];
-        this.storage.forEach(data => {
-      // console.log('*****forEach', data);
+          this.storage.forEach(data => {
+          console.log('*****forEach', data);
           favorites.push(JSON.parse(data));
         });
         return resolve(favorites);

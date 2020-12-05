@@ -39,7 +39,6 @@ page-statistics {
           ion-avatar{
           border-radius: 100%;
           margin-right: 7px;
-          // background: rgba($color: #ff8c00, $alpha: 0.20);
           }
 
           .confirmed{
@@ -66,71 +65,6 @@ page-statistics {
       }
     }
 
-    // SCSS for grid cards
-    .case-container{
-      // background: rgb(234,236,239);
-      // border: none;
-      border-bottom-left-radius: 35px;
-      border-bottom-right-radius: 35px;
-      padding: 10px 10px 30px 10px;
-      //
-      // background: rgba($color: #0d8e53, $alpha: 0.09);
-      background:#F8F8F8;
-      ion-grid{
-        div{
-          display: flex;
-          place-items: center;
-          justify-content: space-around;
-          // padding: 0px 15px;
-        }
-        ion-row{
-          ion-col{
-            ion-card{
-              box-shadow: none;
-              border-radius: 10px;
-              // background: rgba($color: #050505, $alpha: 0.01);
-              ion-card-header{
-                padding-bottom: 2px;
-                div{
-                  display: flex;
-                  ion-avatar{
-                    // background: rgba($color: #ff9c00, $alpha: 0.25);
-                    border-radius: 100%;
-                    margin-right: 10px;
-                    padding: 1px;
-                    width: 20px;
-                    height: 20px;
-                    img{
-                      width: 20px;
-                      height: 20px;
-                    }
-                  }
-                  .confirmed{
-                    background: rgba($color: #ff8c00, $alpha: 0.20);
-                  }
-                  .deaths{
-                    background: rgba($color: #ff2d55, $alpha: 0.20);
-                  }
-                  .recovered{
-                    background: rgba($color: #50e3c2, $alpha: 0.20);
-                  }
-                  .active{
-                    background: rgba($color: #5856d6, $alpha: 0.25);
-                  }
-                }
-              }
-              ion-card-content{
-                text-align: center;
-                h1{
-                  font-weight: 600;
-                  // font-size: 30px;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
     .preventation{
       ion-grid{
         text-align: center;
@@ -141,7 +75,6 @@ page-statistics {
         }
         ion-row{
           ion-col{
-            // margin: 0 15px;
             &:first-child{
               margin-right: 0px;
               margin-left: 15px;

@@ -11,9 +11,6 @@ export class MapPage {
   regionAffected: string;
   areaAffected = ['africa', 'europe', 'north america', 'south america', 'asia', 'oceania'];
   map: any = {}
-  // lat = 8;
-  // long = 38;
-  // map: any;
   constructor(
               public navParams: NavParams,
               private dataService: DataProvider

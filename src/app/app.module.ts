@@ -19,7 +19,6 @@ import { CountryDetailPage } from '../pages/country-detail/country-detail';
 import { FavoritesPage } from '../pages/favorites/favorites';
 import { UserSettingsProvider } from '../providers/user-settings/user-settings';
 import { MapPage } from '../pages/map/map';
-import { DeviceProvider } from '../providers/device/device';
 import { DateConvertorPipe } from '../pipes/date-convertor/date-convertor';
 import { SqlStorageProvider } from '../providers/sql-storage/sql-storage';
 import { PrefixPipe } from '../pipes/prefix/prefix';
@@ -58,7 +57,6 @@ import { PrefixPipe } from '../pipes/prefix/prefix';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     UserSettingsProvider,
-    DeviceProvider,
     SQLite,
     CallNumber,
     SqlStorageProvider

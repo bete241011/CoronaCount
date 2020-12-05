@@ -5,8 +5,6 @@ import { CountriesAffected } from '../../models/countriesAffected';
 import { DataProvider } from '../../providers/data/data';
 import { CountryDetailPage } from '../country-detail/country-detail';
 
-// import moment from "moment";
-
 @Component({
   selector: 'page-country-list',
   templateUrl: 'country-list.html',
@@ -17,7 +15,6 @@ export class CountryListPage {
   countriesAffected: CountriesAffected[]
   _countryFilter: string;
   filteredCountries: CountriesAffected[]
-  // updated: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -28,11 +25,8 @@ export class CountryListPage {
   }
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad CountryListPage', this.regionAffected);
-    // Countries Affected initialization goes here
     let loader = this.loadingCtrl.create({
       content: 'Loading countries...',
-      // spinner: 'dots'
     });
 
     loader.present().then(()=>{

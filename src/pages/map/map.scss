@@ -3,26 +3,11 @@ page-map {
     background:#F8F8F8;
     opacity: .4;
   }
-
-  // ion-content{
-  //   background-color: violet !important;
-  // }
-
-//  ion-content{
-  //  .mapContainer{
-  //     position: absolute;
-  //     top:0;
-  //     width: 100%;
-  //     height: 100%;
-      // opacity: 0;
-      // transition: opacity 150ms ease-in;
     agm-map{
       width: 100%;
       height: 100%;
       opacity: 0;
       transition: opacity 150ms ease-in;
     }
-  //  }
-//  }
 }
 

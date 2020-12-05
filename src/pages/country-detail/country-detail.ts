@@ -29,9 +29,6 @@ export class CountryDetailPage {
   }
 
   ionViewDidLoad() {
-    // if(this.forceRefresh){
-    //   this.country = this.dataService.refreshCountryCases(this.country.country)
-    // }
     this.userSettingService.isFavoriteCountry(this.countryCase.countryInfo.iso3.toString())
       .then(value => this.isFavorite = value);
   }
@@ -100,7 +97,6 @@ export class CountryDetailPage {
     }else{
       let loader = this.loadingCtrl.create({
         content: 'Loading yesterday cases...',
-        // spinner: 'dots'
       });
 
       loader.present().then(()=>{
