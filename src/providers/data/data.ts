@@ -16,7 +16,6 @@ export class DataProvider {
   baseUrl = "https://disease.sh/v3/covid-19";
 
   constructor(private http: HttpClient) {
-    console.log('Hello DataProvider Provider');
   }
 
   setRegionAffected(region: string): void {

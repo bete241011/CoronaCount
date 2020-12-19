@@ -86,7 +86,7 @@ export class CountryDetailPage {
     })
   }
 
-  gotoMap($event, country){
+  gotoMap(country){
     this.navCtrl.push(MapPage, country)
   }
 

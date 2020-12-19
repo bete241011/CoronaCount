@@ -11,7 +11,7 @@
 </ion-header>
 <ion-content>
   <ion-list [virtualScroll]="filteredCountries" [approxHeaderWidth]="'132px'" [approxItemHeight]="'40px'">
-    <ion-item *virtualItem="let country" (click)="onClick($event, country)">
+    <ion-item *virtualItem="let country" (click)="onClick(country)">
       <ion-avatar item-start>
         <img cache="true" [src]="country.countryInfo.flag" [alt]="country.country">
       </ion-avatar>

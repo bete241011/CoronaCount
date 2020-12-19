@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-list >
-      <ion-item *ngFor="let favorite of favorites" (click)="onClick($event, favorite)">
+      <ion-item *ngFor="let favorite of favorites" (click)="onClick(favorite)">
         <ion-avatar item-start>
           <img [src]="favorite.countryInfo.flag" [alt]="favorite.country">
         </ion-avatar>

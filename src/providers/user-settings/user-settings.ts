@@ -51,7 +51,7 @@ export class UserSettingsProvider {
       return new Promise(resolve => {
         let favorites: CountriesAffected[] = [];
           this.storage.forEach(data => {
-          console.log('*****forEach', data);
+          // console.log('*****forEach', data);
           favorites.push(JSON.parse(data));
         });
         return resolve(favorites);
@@ -63,7 +63,7 @@ export class UserSettingsProvider {
     if(this.sqlMode){
       return this.sqlStorage.initializeDatabase();
     } else {
-      return new Promise(resolve => resolve());
+      return new Promise<void>(resolve => resolve());
     }
   }
 

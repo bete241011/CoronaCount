@@ -5,7 +5,7 @@
     </button>
     <ion-title>{{regionAffected === 'all' ? 'Worldwide' : regionAffected}}</ion-title>
     <ion-buttons end class="dial">
-      <button color="primary" ion-button icon-only (click)="calling($event)">
+      <button color="primary" ion-button icon-only (click)="calling()">
         <ion-icon name="call"></ion-icon>
       </button>
      </ion-buttons>
@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content class="page-content">
-  <ion-refresher (ionRefresh)="refreshRegionAffectedData($event)">
+  <ion-refresher (ionRefresh)="refreshRegionAffectedData()">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <div class="case-container-slides" margin-bottom *ngIf="regionAffectedCases">

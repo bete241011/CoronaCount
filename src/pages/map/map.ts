@@ -42,9 +42,7 @@ export class MapPage {
               long: mapWithData.countryInfo.long,
             }
         },
-        err => console.log(err),
-        () => console.log("lat",this.map.lat, this.map.long)
-      )
+        err => console.log(err),      )
   }
 
 }

@@ -51,7 +51,7 @@ export class CountryListPage {
     })
   }
 
-  onClick($event, country){
+  onClick(country){
     this.navCtrl.push(CountryDetailPage, {country})
   }
 

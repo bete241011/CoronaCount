@@ -11,7 +11,7 @@
     </ion-buttons>
   </ion-navbar>
   <ion-toolbar>
-    <ion-segment [(ngModel)]="countryCaseByDate" (ionChange)="fetchCountryCaseByDate($event)">
+    <ion-segment [(ngModel)]="countryCaseByDate" (ionChange)="fetchCountryCaseByDate()">
       <ion-segment-button value="yesterday">Yesterday</ion-segment-button>
       <ion-segment-button value="today">Today</ion-segment-button>
     </ion-segment>
@@ -19,7 +19,7 @@
 </ion-header>
 
 <ion-content class="detailCaseContainer">
-  <ion-refresher (ionRefresh)="refreshData($event, countryCase.country)">
+  <ion-refresher (ionRefresh)="refreshData(countryCase.country)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-card>
@@ -28,7 +28,7 @@
       <ion-grid>
         <div>
           <ion-note>Update {{countryCase.updated | dateConvertor}}</ion-note>
-            <button clear color="dark" icon-only ion-button (click) = 'gotoMap($event, countryCase.country)'>
+            <button clear color="dark" icon-only ion-button (click) = 'gotoMap(countryCase.country)'>
               <ion-icon ios="ios-navigate" md="ios-navigate"></ion-icon>
             </button>
         </div>

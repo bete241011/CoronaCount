@@ -22,7 +22,7 @@ export class FavoritesPage {
     this.userSettingService.getAllFavorites().then(favs => this.favorites = favs);
   }
 
-  onClick($event, country){
+  onClick(country){
     this.navCtrl.push(CountryDetailPage, {country})
   }
 
